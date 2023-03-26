@@ -23,11 +23,28 @@ function SignIn() {
     .catch(error => {
       console.log("error");
     });
-
-
-  
-  
   };
+
+  const login = (e) => {
+    e.preventDefault();
+
+    fetch('http://localhost:3000/githubSSO')
+    .then(response => {
+      if (!response.ok) {
+        alert("error");
+
+      } else {
+       window.location.href = 'http://192.168.1.25:8080';
+      }
+    })
+    .catch(error => {
+      console.log("error");
+    });
+  };
+
+    
+  
+  
  
  
 
@@ -58,6 +75,33 @@ function SignIn() {
               {/* Form */}
               <div className="max-w-sm mx-auto">
                 <form>
+                  
+              
+                  <div className="flex flex-wrap -mx-3 mb-4">
+                    <div className="w-full px-3">
+                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="email"> Email <span className="text-red-600">*</span></label>
+                      <input id="email" type="email" className="form-input w-full text-gray-300" placeholder="email@example.com" required />
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap -mx-3 mb-4">
+                    <div className="w-full px-3">
+                      <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="password">Password <span className="text-red-600">*</span></label>
+                      <input id="password" type="password" className="form-input w-full text-gray-300" placeholder="Password (at least 10 characters)" required />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap -mx-3 mt-6">
+                    <div className="w-full px-3">
+                      <button onClick={login.bind(this)} className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign up</button>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center my-6">
+                  <div className="border-t border-gray-700 border-dotted grow mr-3" aria-hidden="true"></div>
+                  <div className="text-gray-400">Or, sign in with a provider</div>
+                  <div className="border-t border-gray-700 border-dotted grow ml-3" aria-hidden="true"></div>
+                </div>
+
                   <div className="flex flex-wrap -mx-3">
                     <div className="w-full px-3">
                     <button onClick={githubSSO.bind(this)} className="btn px-0 text-white bg-gray-600 hover:bg-green-700 w-full relative flex items-center" >
@@ -69,6 +113,7 @@ function SignIn() {
 </button>
                     </div>
                   </div>
+
                 </form>
                
             </div>
@@ -86,6 +131,7 @@ function SignIn() {
     
   );
   
-}
+
+};
 
 export default SignIn;

@@ -28,10 +28,10 @@ function SignIn() {
   const login = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:3000/githubSSO')
+    fetch('http://localhost:3000/login')
     .then(response => {
       if (!response.ok) {
-        alert("error");
+        alert("error cannot login with user password, please try git instead");
 
       } else {
        window.location.href = 'http://192.168.1.25:8080';
@@ -74,7 +74,7 @@ function SignIn() {
 
               {/* Form */}
               <div className="max-w-sm mx-auto">
-                <form>
+                <form onSubmit={login.bind(this)}>
                   
               
                   <div className="flex flex-wrap -mx-3 mb-4">
@@ -92,7 +92,7 @@ function SignIn() {
 
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                      <button onClick={login.bind(this)} className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign up</button>
+                      <button className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign up</button>
                     </div>
                   </div>
 
